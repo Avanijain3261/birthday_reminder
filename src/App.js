@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import Data from './data.js';
 import './App.css';
 
 function App() {
+  const [people, setPeople] = useState(Data);
+
+  const handleRemove = (id) => {
+    const updatedPeople = people.filter(person => person.id !== id);
+    setPeople(updatedPeople);
+  };
+
+  useEffect(() => {
+    console.log(`Number of people: ${people.length}`);
+  }, [people]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <section className="title">
+        <h1>Calendar of Celebrations</h1>
+        <h2>{people.length} Birthdays Today</h2>
+      </section>
+      <section className="container">
+        {people.map((person) => (
+          <div key={person.id} className="birthday">
+            <img src={person.image} alt='NA'/>
+            <h3>{person.name}</h3>
+            <h4>{person.age} years old</h4>
+            <button onClick={() => handleRemove(person.id)}>REMOVE</button>
+          </div>
+        ))}
+      </section>
+    </>
   );
 }
 

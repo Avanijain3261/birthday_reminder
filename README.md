@@ -1,6 +1,6 @@
 # Birthday Reminder App
 
-Search the below link to visit webpage:
+Click the link to visit webpage:
 https://avanijain3261.github.io/birthday_reminder
 
 ## Introduction
